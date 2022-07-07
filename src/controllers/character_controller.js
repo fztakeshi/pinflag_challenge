@@ -33,7 +33,7 @@ export default class CharacterController extends BaseController {
       }
       return super.Success(res, arr)
     } catch (err) {
-      /**TODO: ¿Manejar errores? */
+      /** TODO: error management */
     }
   }
 
@@ -46,19 +46,45 @@ export default class CharacterController extends BaseController {
         species,
         origin
       })
-      console.log(req.body)
       return super.Success(res, 'Character created sucessfully')
     } catch (err) {
-      /** TODO: ¿Manejar errores? */
+      /** TODO: error management */
     }
   }
 
   async show (req, res) {
     try {
-
+      const { name } = req.body
+      const characters = await models.Character.findAll({ where: { name: name } })
+      if (characters.length < 1) {
+        const { data } = await axios({
+          method: 'get',
+          url: `https://rickandmortyapi.com/api/character/?name=${name}`
+        })
+        const arr = []
+        data.results.forEach((character) => {
+          arr.push({
+            name: character.name,
+            status: character.status,
+            species: character.species,
+            origin: character.origin.name
+          })
+        })
+        return super.Success(res, arr)
+      } else {
+        const arr = []
+        characters.forEach((character) =>
+          arr.push({
+            name: character.name,
+            status: character.status,
+            species: character.species,
+            origin: character.origin
+          })
+        )
+        return super.Success(res, arr)
+      }
     } catch (err) {
-      /** TODO: ¿Manejar errores? */
+      /** TODO: error management */
     }
-    return super.Success(res, '')
   }
 }
