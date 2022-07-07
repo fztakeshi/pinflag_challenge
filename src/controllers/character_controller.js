@@ -1,4 +1,4 @@
-// import models from '../models'
+import models from '../models'
 import BaseController from './base'
 
 const axios = require('axios').default
@@ -33,15 +33,32 @@ export default class CharacterController extends BaseController {
       }
       return super.Success(res, arr)
     } catch (err) {
-      /* TODO: Manejar errores? */
+      /**TODO: ¿Manejar errores? */
     }
   }
 
   async create (req, res) {
-    return super.Success(res, '')
+    try {
+      const { name, status, species, origin } = req.body
+      models.Character.create({
+        name,
+        status,
+        species,
+        origin
+      })
+      console.log(req.body)
+      return super.Success(res, 'Character created sucessfully')
+    } catch (err) {
+      /** TODO: ¿Manejar errores? */
+    }
   }
 
   async show (req, res) {
+    try {
+
+    } catch (err) {
+      /** TODO: ¿Manejar errores? */
+    }
     return super.Success(res, '')
   }
 }
