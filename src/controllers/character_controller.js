@@ -48,7 +48,7 @@ export default class CharacterController extends BaseController {
       })
       return super.Success(res, 'Character created sucessfully')
     } catch (err) {
-      /** TODO: error management */
+      console.log(err)
     }
   }
 
@@ -84,7 +84,6 @@ export default class CharacterController extends BaseController {
         return super.Success(res, arr)
       }
     } catch (err) {
-      /** TODO: error management */
     }
   }
 }
