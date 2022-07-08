@@ -1,0 +1,449 @@
+{
+	"info": {
+		"_postman_id": "72cdf7ee-faf4-49e9-8368-2606ca82496f",
+		"name": "Documentation pinflag challenge API",
+		"description": "# Introduction\n\nAPI for pinflag backend challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18330024"
+	},
+	"item": [
+		{
+			"name": "localhost:5000",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:5000",
+					"host": [
+						"localhost"
+					],
+					"port": "5000"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET character/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/character/{id}",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"character",
+						"{id}"
+					]
+				},
+				"description": "Makes a request to Rick and Morty API and returns a JSON with the information of {id} number of characters. This characters have name, status, species and origin."
+			},
+			"response": [
+				{
+					"name": "code 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/character/5",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character",
+								"5"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "459"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1cb-i7+MrviXKbac6Bd84pn5SceUGJo\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 08 Jul 2022 21:29:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"Rick Sanchez\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"Earth (C-137)\"\n    },\n    {\n        \"name\": \"Morty Smith\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Summer Smith\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"Earth (Replacement Dimension)\"\n    },\n    {\n        \"name\": \"Beth Smith\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"Earth (Replacement Dimension)\"\n    },\n    {\n        \"name\": \"Jerry Smith\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"Earth (Replacement Dimension)\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "POST character/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"string\",\r\n    \"status\": \"string\",\r\n    \"species\": \"string\",\r\n    \"origin\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/character/create",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"character",
+						"create"
+					]
+				},
+				"description": "Receive a body with name, status, species and origin, then create a new character in the database with the given name, status, species and origin."
+			},
+			"response": [
+				{
+					"name": "code 201",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Snake Linguist\",\r\n    \"status\": \"unknown\",\r\n    \"species\": \"Animal\",\r\n    \"origin\": \"Snake Planet\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/character/create",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character",
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-WN9hD4NzJ5txY7cKqDZCkSk5ims\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 08 Jul 2022 21:36:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Character created sucessfully\"\n}"
+				},
+				{
+					"name": "code 400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Snake Linguist\",\r\n    \"status\": \"unknown\",\r\n    \"species\": null,\r\n    \"origin\": \"Snake Planet\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/character/create",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character",
+								"create"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2f-uMAejHuTb/9zqugrxodUazskHW8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 08 Jul 2022 21:54:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Bad Request: empty or null values\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST character",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"string\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/character",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"character"
+					]
+				},
+				"description": "Recieve body with a JSON containing the name of a character from RIck and Morty. Then looks up this character on the database and returns his information. If the character doesn't exist in the database, look it up from the API of Rick and Morty. Returns a JSON with the information of the character."
+			},
+			"response": [
+				{
+					"name": "code 200 DB",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Rick Sanchez\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/character",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "85"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"55-OLc6uxdaNsGiQew0+M3Jykc0G1I\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 08 Jul 2022 21:39:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"Rick Sanchez\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"Earth (C-137)\"\n    }\n]"
+				},
+				{
+					"name": "code 200 API",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"morty\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/character",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1644"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"66c-a6zMnfkN7Ys7BkHFCPdF/aUBc8c\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 08 Jul 2022 21:41:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"Morty Smith\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Alien Morty\",\n        \"status\": \"unknown\",\n        \"species\": \"Alien\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Antenna Morty\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Aqua Morty\",\n        \"status\": \"unknown\",\n        \"species\": \"Humanoid\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Artist Morty\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Big Head Morty\",\n        \"status\": \"unknown\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Big Morty\",\n        \"status\": \"Dead\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Body Guard Morty\",\n        \"status\": \"Dead\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Blue Shirt Morty\",\n        \"status\": \"unknown\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Campaign Manager Morty\",\n        \"status\": \"Dead\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Cop Morty\",\n        \"status\": \"Dead\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Cowboy Morty\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Cronenberg Morty\",\n        \"status\": \"unknown\",\n        \"species\": \"Cronenberg\",\n        \"origin\": \"Cronenberg Earth\"\n    },\n    {\n        \"name\": \"Cult Leader Morty\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Cyclops Morty\",\n        \"status\": \"Alive\",\n        \"species\": \"Humanoid\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Dipper and Mabel Mortys\",\n        \"status\": \"unknown\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Eric Stoltz Mask Morty\",\n        \"status\": \"unknown\",\n        \"species\": \"Human\",\n        \"origin\": \"Eric Stoltz Mask Earth\"\n    },\n    {\n        \"name\": \"Evil Morty\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Fat Morty\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    },\n    {\n        \"name\": \"Glasses Morty\",\n        \"status\": \"Alive\",\n        \"species\": \"Human\",\n        \"origin\": \"unknown\"\n    }\n]"
+				},
+				{
+					"name": "code 404",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Takeshi\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/character",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"character"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2f-yZ9PVXToZ/xbYYUcHUe0LeWYUaI\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 08 Jul 2022 21:40:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Character not found in db and API\"\n}"
+				}
+			]
+		}
+	]
+}
