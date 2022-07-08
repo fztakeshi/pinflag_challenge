@@ -41,7 +41,6 @@ export default class CharacterController extends BaseController {
   async create (req, res) {
     try {
       const { name, status, species, origin } = req.body
-      console.log(Object.keys(req.body).length)
       if (hasNull(req.body) === true || Object.keys(req.body).length !== 4) {
         return super.ErrorBadRequest(res, 'Bad Request: empty or null values')
       } else {
@@ -54,7 +53,6 @@ export default class CharacterController extends BaseController {
         return super.Created(res, 'Character created sucessfully')
       }
     } catch (ValidationError) {
-      console.log(ValidationError)
     }
   }
 

@@ -42,7 +42,7 @@ describe('API character endpoints', () => {
     beforeAll(async () => {
       response = await postCreate(charData)
     })
-    test('should respond with a 200 status code', async () => {
+    test('should respond with a 201 status code', async () => {
       expect(response.status).toBe(201)
     })
     test('character should be on database after created', async () => {
