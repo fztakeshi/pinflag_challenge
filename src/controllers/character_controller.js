@@ -33,7 +33,7 @@ export default class CharacterController extends BaseController {
       }
       return super.Success(res, arr)
     } catch (err) {
-      /** TODO: error management */
+      return super.InternalError(res, err)
     }
   }
 

@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint --fix src",
     "build": "babel src --ignore src/tests --out-dir build --copy-files --no-copy-ignored --source-maps inline",
-    "start": "npm run lint && npm run build && node ./build/index.js"
+    "start": "npm run lint && npm run build && node ./build/index.js",
+    "test": "jest --runInBand --verbose"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,12 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.2.0",
     "express-validator": "^6.14.0",
+    "jest": "^28.1.2",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.2",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^6.2.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
@@ -42,5 +45,10 @@
     "gulp-babel": "^8.0.0",
     "nodemon": "^2.0.6",
     "sequelize-auto": "^0.6.5"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/build/"
+    ]
   }
 }

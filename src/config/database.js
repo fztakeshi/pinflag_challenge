@@ -10,10 +10,8 @@ module.exports = {
     dialect: 'postgres'
   },
   test: {
-    username: 'root',
-    password: null,
-    database: 'database_test',
-    host: '127.0.0.1',
+    extend: 'default',
+    database: process.env.DATABASE_TEST_NAME,
     dialect: 'postgres'
   },
   production: {
