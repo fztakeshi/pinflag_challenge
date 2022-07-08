@@ -32,7 +32,7 @@ describe('API character endpoints', () => {
   /** Test for POST create character in db */
   const postCreate = (body) => request(app).post('/character/create').set('Content-type', 'application/json').send(body)
   describe('POST character/create', () => {
-    let response;
+    let response
     const charData = {
       name: 'Shlaami',
       status: 'Alive',
@@ -46,25 +46,24 @@ describe('API character endpoints', () => {
       expect(response.status).toBe(200)
     })
     test('character should be on database after created', async () => {
-      const createdCharacter =  await models.Character.findOne({ 
-        where: { 
-        name: charData.name, 
-        status: charData.status,
-        species: charData.species,
-        origin: charData.origin
-      }})
+      const createdCharacter = await models.Character.findOne({
+        where: {
+          name: charData.name,
+          status: charData.status,
+          species: charData.species,
+          origin: charData.origin
+        }
+      })
       console.log(createdCharacter)
       console.log(charData)
       expect(createdCharacter.name).toEqual(charData.name)
     })
-
   })
 
   /** Test for POST show character from db or api */
   const postShow = (body) => request(app).post('/character').set('Content-type', 'application/json').send(body)
   describe('POST character/show', () => {
     let response
-    let createdChar
     const charData = {
       name: 'Rick Sanchez',
       status: 'Alive',
@@ -72,9 +71,8 @@ describe('API character endpoints', () => {
       origin: 'Earth (C-137)'
     }
     beforeAll(async () => {
-      createdChar = await models.Character.create(charData)
+      await models.Character.create(charData)
     })
-
 
     describe('Character belongs to database', () => {
       beforeAll(async () => {
@@ -84,7 +82,7 @@ describe('API character endpoints', () => {
       test('should respond with a 200 status code', async () => {
         expect(response.status).toBe(200)
       })
-  
+
       test('should respond with an array', async () => {
         expect(response.body).toBeInstanceOf(Array)
       })
@@ -98,7 +96,7 @@ describe('API character endpoints', () => {
       test('should respond with a 200 status code', async () => {
         expect(response.status).toBe(200)
       })
-  
+
       test('should respond with an array', async () => {
         expect(response.body).toBeInstanceOf(Array)
       })
