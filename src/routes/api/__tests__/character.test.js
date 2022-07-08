@@ -43,7 +43,7 @@ describe('API character endpoints', () => {
       response = await postCreate(charData)
     })
     test('should respond with a 200 status code', async () => {
-      expect(response.status).toBe(200)
+      expect(response.status).toBe(201)
     })
     test('character should be on database after created', async () => {
       const createdCharacter = await models.Character.findOne({
@@ -54,8 +54,6 @@ describe('API character endpoints', () => {
           origin: charData.origin
         }
       })
-      console.log(createdCharacter)
-      console.log(charData)
       expect(createdCharacter.name).toEqual(charData.name)
     })
   })
