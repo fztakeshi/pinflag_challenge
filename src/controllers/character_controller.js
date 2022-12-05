@@ -1,5 +1,6 @@
 /* import models from '../models' */
 import BaseController from './base'
+import models from '../models'
 import { getCharacters } from '../services/character_service'
 
 export default class CharacterController extends BaseController {
@@ -13,7 +14,19 @@ export default class CharacterController extends BaseController {
   }
 
   async create (req, res) {
-    return super.Success(res, '')
+    try {
+      const { name, status, species, origin } = req.body
+      console.log(req.body)
+      const character = await models.Character.create({
+        name: name,
+        status: status,
+        species: species,
+        origin: origin
+      })
+      return super.Success(res, character)
+    } catch (error) {
+      return super.InternalError(res, error)
+    }
   }
 
   async show (req, res) {

@@ -7,7 +7,7 @@ const routes = app.Router()
 
 routes.get('/:number', new CharacterController().index)
 
-routes.post('/', new CharacterController().create)
+routes.post('/create', new CharacterController().create)
 
 routes.get('/', new CharacterController().show)
 
