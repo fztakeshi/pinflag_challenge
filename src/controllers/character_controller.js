@@ -1,6 +1,6 @@
 /* import models from '../models' */
 import BaseController from './base'
-import { getCharacters } from '../services/character_service'
+import { getCharacters, getCharacterByNameFromAPI, getCharacterByNameFromDB } from '../services/character_service'
 
 export default class CharacterController extends BaseController {
   CharacterController () { }
@@ -17,6 +17,18 @@ export default class CharacterController extends BaseController {
   }
 
   async show (req, res) {
-    return super.Success(res, '')
+    try {
+      const { name } = req.query
+      console.log(req.query)
+      const characterFromDB = await getCharacterByNameFromDB(name)
+      if (characterFromDB.length > 0) {
+        return super.Success(res, characterFromDB)
+      } else {
+        const characterFromAPI = await getCharacterByNameFromAPI(name)
+        return super.Success(res, characterFromAPI)
+      }
+    } catch (error) {
+      return super.InternalError(res, error)
+    }
   }
 }
