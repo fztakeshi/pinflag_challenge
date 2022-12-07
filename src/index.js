@@ -1,14 +1,8 @@
-import express from 'express'
-
 import './config/environment'
-import routes from './routes'
 import './models'
+import app from './app'
 
-const app = express()
 const port = process.env.PORT || 5000
-
-app.use(express.json())
-app.use('/', routes)
 
 const startServer = () => {
   app.listen(port, () => {
@@ -17,5 +11,3 @@ const startServer = () => {
 }
 
 startServer()
-
-export default app

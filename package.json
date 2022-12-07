@@ -8,7 +8,10 @@
     "build": "babel src --ignore src/tests --out-dir build --copy-files --no-copy-ignored --source-maps inline",
     "start": "npm run lint && npm run build && node ./build/index.js",
     "dev": "nodemon --watch src --exec npm run start",
-    "test": "jest --verbose"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --silent"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",

@@ -1,11 +1,13 @@
 import axios from 'axios'
 import models from '../models'
 import { Op } from 'sequelize'
+import { transformToArray } from '../utils/util_functions'
 
 export async function getCharacters (number) {
   try {
     const charactersinfo = await axios.get(`https://rickandmortyapi.com/api/character/${number}`)
-    const response = charactersinfo.data.map((character) => (
+    const charactersdata = transformToArray(charactersinfo.data)
+    const response = charactersdata.map((character) => (
       {
         name: character.name,
         status: character.status,
@@ -15,7 +17,7 @@ export async function getCharacters (number) {
     ))
     return response
   } catch (error) {
-    console.log(error)
+    return null
   }
 }
 
@@ -32,7 +34,7 @@ export async function getCharacterByNameFromAPI (name) {
     ))
     return response
   } catch (error) {
-    console.log(error)
+    return null
   }
 }
 
@@ -41,11 +43,11 @@ export async function getCharacterByNameFromDB (name) {
     const character = await models.Character.findAll({
       where: {
         name:
-        { [Op.iLike]: `%${name}%` }
+          { [Op.iLike]: `%${name}%` }
       }
     })
     return character
   } catch (error) {
-    console.log(error)
+    return null
   }
 }

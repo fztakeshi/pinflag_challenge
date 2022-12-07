@@ -6,39 +6,47 @@ export default class CharacterController extends BaseController {
   CharacterController () { }
 
   async index (req, res) {
-    const { number } = req.params
-    const arrayNumber = Array.from({ length: number }, (_, i) => i + 1)
-    const characters = await getCharacters(arrayNumber)
-    return super.Success(res, characters)
+    try {
+      const { number } = req.params
+      if (number > 826 || number < 1) {
+        return super.ErrorBadRequest(res, 'Number must be between 1 and 826')
+      } else {
+        const arrayNumber = Array.from({ length: number }, (_, i) => i + 1)
+        const characters = await getCharacters(arrayNumber)
+        return super.Success(res, characters)
+      }
+    } catch (error) {
+      return super.InternalError(res, error)
+    }
   }
 
   async create (req, res) {
     try {
       const { name, status, species, origin } = req.body
-      console.log(req.body)
-      const character = await models.Character.create({
+      const character = await models.Character.findOrCreate({ where : {
         name: name,
         status: status,
         species: species,
         origin: origin
-      })
+      }})
       return super.Success(res, character)
     } catch (error) {
-      return super.InternalError(res, error)
+      return super.ErrorBadRequest(res, error)
     }
   }
 
   async show (req, res) {
     try {
       const { name } = req.query
-      console.log(req.query)
+      if (name.length === 0) {
+        return super.ErrorBadRequest(res, 'Name is required')
+      }
       const characterFromDB = await getCharacterByNameFromDB(name)
       if (characterFromDB.length > 0) {
         return super.Success(res, characterFromDB)
-      } else {
-        const characterFromAPI = await getCharacterByNameFromAPI(name)
-        return super.Success(res, characterFromAPI)
       }
+      const characterFromAPI = await getCharacterByNameFromAPI(name)
+      return characterFromAPI && characterFromAPI !== null ? super.Success(res, characterFromAPI) : super.NotFound(res, 'Character not found')
     } catch (error) {
       return super.InternalError(res, error)
     }
