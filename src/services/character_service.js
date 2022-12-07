@@ -1,7 +1,7 @@
 import axios from 'axios'
 import models from '../models'
 import { Op } from 'sequelize'
-import { transformToArray } from '../utils/util_functions'
+import { transformToArray, transformToCharacterModel } from '../utils/util_functions'
 
 export async function getCharacters (number) {
   try {
@@ -46,7 +46,7 @@ export async function getCharacterByNameFromDB (name) {
           { [Op.iLike]: `%${name}%` }
       }
     })
-    return character
+    return transformToCharacterModel(character)
   } catch (error) {
     return null
   }

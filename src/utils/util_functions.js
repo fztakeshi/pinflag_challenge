@@ -5,3 +5,15 @@ export const transformToArray = (element) => {
     return [element]
   }
 }
+
+export const transformToCharacterModel = (listOfCharacters) => {
+  const response = listOfCharacters.map((character) => (
+    {
+      name: character?.name,
+      status: character?.status,
+      species: character?.species,
+      origin: character?.origin.name
+    }
+  ))
+  return response
+}

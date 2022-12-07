@@ -23,15 +23,17 @@ export default class CharacterController extends BaseController {
   async create (req, res) {
     try {
       const { name, status, species, origin } = req.body
-      const character = await models.Character.findOrCreate({ where : {
-        name: name,
-        status: status,
-        species: species,
-        origin: origin
-      }})
-      return super.Success(res, character)
+      await models.Character.findOrCreate({
+        where: {
+          name: name,
+          status: status,
+          species: species,
+          origin: origin
+        }
+      })
+      return super.Success(res, 'Character created successfully')
     } catch (error) {
-      return super.ErrorBadRequest(res, error)
+      return super.ErrorBadRequest(res, 'name, status, species and origin are required')
     }
   }
 
